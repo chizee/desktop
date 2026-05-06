@@ -1884,9 +1884,6 @@ if (!gotTheLock) {
           url: result.url,
           key: result.apiKey
         })
-        // Save enabled state
-        await setConfig({ openTerminal: { ...CONFIG?.openTerminal, enabled: true } })
-        CONFIG = await getConfig()
         return result
       } catch (error) {
         log.error('Failed to start Open Terminal:', error)
@@ -1908,8 +1905,7 @@ if (!gotTheLock) {
             url: info.url
           })
         }
-        await setConfig({ openTerminal: { ...CONFIG?.openTerminal, enabled: false } })
-        CONFIG = await getConfig()
+
         return true
       } catch (error) {
         log.error('Failed to stop Open Terminal:', error)
@@ -1956,8 +1952,7 @@ if (!gotTheLock) {
           // Refresh model list after backend registers the endpoint
           setTimeout(() => sendToRenderer('models:refresh'), 1000)
         }
-        await setConfig({ llamaCpp: { ...CONFIG?.llamaCpp, enabled: true } })
-        CONFIG = await getConfig()
+
         return result
       } catch (error) {
         log.error('Failed to start llamacpp:', error)
@@ -1981,8 +1976,7 @@ if (!gotTheLock) {
           // Refresh model list after removing endpoint
           setTimeout(() => sendToRenderer('models:refresh'), 500)
         }
-        await setConfig({ llamaCpp: { ...CONFIG?.llamaCpp, enabled: false } })
-        CONFIG = await getConfig()
+
         return true
       } catch (error) {
         log.error('Failed to stop llamacpp:', error)

@@ -429,7 +429,7 @@
     </div>
     <Switch
       checked={$config?.llamaCpp?.enabled ?? false}
-      onToggle={() => updateConfig('enabled', !($config?.llamaCpp?.enabled ?? false))}
+      onchange={(value) => updateConfig('enabled', value)}
     />
   </div>
 
